@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <title>پروژه آناتومی فک پایین | دانشگاه شهید بهشتی</title>
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    @font-face {
+        font-family: vazir;
+        src: url(src/Vazir-Medium-FD-WOL.ttf);
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'vazir', 'Tahoma', 'Arial', sans-serif;
+    }
+
+    body {
+      background: #f0ebe4;
+      color: #2c2c2c;
+      padding: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 40px;
+      box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.12);
+      padding: 2rem 2rem 1.5rem;
+      transition: all 0.2s;
+    }
+
+    /* ----- quick access (تم جدید) ----- */
+    .quick-access {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.6rem 1.2rem;
+      padding: 0.9rem 1.5rem;
+      margin-bottom: 2rem;
+      background: #f8f4ef;
+      border-radius: 60px;
+      border: 1px solid #e7ddd2;
+    }
+
+    .quick-access a {
+      text-decoration: none;
+      color: #4d3e32;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 0.4rem 1.2rem;
+      border-radius: 40px;
+      transition: 0.2s;
+      background: transparent;
+      letter-spacing: 0.2px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .quick-access a i {
+      color: #b48b7a;
+      font-size: 1rem;
+    }
+
+    .quick-access a:hover {
+      background: #e5d6cb;
+      color: #2e1f18;
+      transform: scale(1.02);
+    }
+
+    /* headings */
+    h1 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: #2f241d;
+      letter-spacing: -0.5px;
+      border-right: 8px solid #c9ad9a;
+      padding-right: 1.2rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .subhead {
+      color: #6b5b4f;
+      margin-bottom: 2.2rem;
+      font-size: 1.1rem;
+      border-bottom: 2px solid #f0e8e0;
+      padding-bottom: 0.7rem;
+      padding-right: 0.5rem;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      margin: 2.2rem 0 1.5rem;
+      color: #35281f;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-weight: 600;
+    }
+
+    .section-title i {
+      color: #b48b7a;
+      font-size: 1.9rem;
+    }
+
+    /* ----- team section (عمودی) ----- */
+    .team-vertical {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      background: #f9f5f1;
+      padding: 1.6rem 2rem;
+      border-radius: 28px;
+      margin-bottom: 0.5rem;
+      border: 1px solid #ece2d9;
+    }
+
+    .team-member-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1.1rem;
+      font-weight: 500;
+      padding: 0.3rem 0.2rem;
+      border-bottom: 1px dashed #e1d4c9;
+    }
+
+    .team-member-row:last-child {
+      border-bottom: none;
+    }
+
+    .team-member-row i {
+      color: #b48b7a;
+      width: 1.8rem;
+      text-align: center;
+      font-size: 1.2rem;
+    }
+
+    .advisor-row i {
+      color: #a67c6a;
+    }
+
+    .advisor-row {
+      font-weight: 600;
+      color: #4d3428;
+    }
+
+    /* ----- box list (accordion) ----- */
+    .box-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      margin: 1.5rem 0;
+    }
+
+    .box-item {
+      background: white;
+      border-radius: 20px;
+      border: 1px solid #e6dbd1;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+      transition: 0.2s;
+      overflow: hidden;
+    }
+
+    .box-item:hover {
+      border-color: #ccb9ab;
+    }
+
+    .box-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.9rem 1.8rem;
+      background: #fbf8f5;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1rem;
+      color: #3b2c22;
+      gap: 10px;
+      transition: 0.15s;
+      border-radius: 20px;
+    }
+
+    .box-header i {
+      color: #b48b7a;
+      font-size: 1.1rem;
+      transition: 0.2s;
+    }
+
+    .box-header .arrow {
+      margin-right: auto;
+      font-size: 1.2rem;
+      color: #a18473;
+    }
+
+    .box-content {
+      max-height: 0;
+      padding: 0 1.8rem;
+      background: #fdfcfa;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      border-top: 0px solid transparent;
+    }
+
+    .box-item.active .box-content {
+      max-height: 300px;
+      padding: 1.2rem 1.8rem 1.8rem;
+      border-top: 1px solid #e6dbd1;
+    }
+
+    .box-item.active .box-header {
+      background: #f3ece6;
+      border-radius: 20px 20px 0 0;
+    }
+
+    .box-item.active .arrow {
+      transform: rotate(180deg);
+    }
+
+    .box-content p {
+      color: #3d322b;
+      font-weight: 400;
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    .box-content strong {
+      color: #4d3428;
+    }
+
+    /* video */
+    .video-wrapper {
+      background: #f4ede7;
+      border-radius: 30px;
+      padding: 1.2rem;
+      margin: 1.8rem 0;
+      text-align: center;
+    }
+
+    .video-wrapper iframe {
+      width: 100%;
+      max-width: 780px;
+      height: 340px;
+      border-radius: 24px;
+      border: 0;
+      box-shadow: 0 12px 24px -12px rgba(0, 0, 0, 0.15);
+    }
+
+    /* ===== گالری فلکس + اسلاید ===== */
+    .gallery-section {
+      margin: 1.5rem 0;
+    }
+
+    .gallery-flex {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      justify-content: center;
+    }
+
+    .gallery-thumb {
+      flex: 0 0 auto;
+      width: 120px;
+      height: 120px;
+      border-radius: 24px;
+      object-fit: cover;
+      border: 3px solid #fff;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+      cursor: pointer;
+      transition: 0.2s;
+      background: #dfd3c9;
+    }
+
+    .gallery-thumb:hover {
+      transform: scale(1.04);
+      border-color: #b48b7a;
+    }
+
+    /* Lightbox / slideshow */
+    .lightbox-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(20, 15, 12, 0.92);
+      backdrop-filter: blur(6px);
+      z-index: 999;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 1.5rem;
+    }
+
+    .lightbox-overlay.active {
+      display: flex;
+    }
+
+    .lightbox-slide {
+      max-width: 90vw;
+      max-height: 80vh;
+      border-radius: 32px;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+      object-fit: contain;
+      background: #2a1f19;
+    }
+
+    .lightbox-nav {
+      display: flex;
+      gap: 2.5rem;
+      margin-top: 1.8rem;
+      align-items: center;
+    }
+
+    .lightbox-nav button {
+      background: rgba(255, 242, 235, 0.15);
+      border: 2px solid rgba(255, 242, 235, 0.3);
+      color: #f5ede7;
+      font-size: 2.2rem;
+      padding: 0.4rem 1.2rem;
+      border-radius: 60px;
+      cursor: pointer;
+      transition: 0.2s;
+      backdrop-filter: blur(4px);
+      font-weight: 300;
+    }
+
+    .lightbox-nav button:hover {
+      background: rgba(255, 242, 235, 0.3);
+      transform: scale(1.06);
+    }
+
+    .close-lightbox {
+      position: absolute;
+      top: 1.8rem;
+      left: 2rem;
+      background: none;
+      border: none;
+      color: #f0e3db;
+      font-size: 2.8rem;
+      cursor: pointer;
+      transition: 0.2s;
+      opacity: 0.7;
+    }
+
+    .close-lightbox:hover {
+      opacity: 1;
+      transform: rotate(90deg);
+    }
+
+    .lightbox-counter {
+      color: #dacfc7;
+      font-size: 1rem;
+      letter-spacing: 1px;
+      margin-top: 0.5rem;
+    }
+
+    /* دکمه افزودن عکس */
+    .add-image-btn {
+      background: #f4ede7;
+      border: 2px dashed #b48b7a;
+      border-radius: 60px;
+      padding: 0.7rem 1.8rem;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #4d3428;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: 0.2s;
+      margin: 0.8rem 0 0.2rem;
+    }
+
+    .add-image-btn:hover {
+      background: #e5d6cb;
+      border-color: #8f6f5e;
+    }
+
+    .add-image-btn i {
+      font-size: 1.3rem;
+    }
+
+    /* scroll top */
+    .scroll-top {
+      display: inline-block;
+      margin: 2.2rem 0 1rem;
+      background: #3b2c22;
+      color: white;
+      border: none;
+      padding: 0.8rem 2.4rem;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      box-shadow: 0 8px 20px -6px #3b2c2240;
+      transition: 0.2s;
+      cursor: pointer;
+      border: 1px solid #5a4538;
+    }
+
+    .scroll-top i {
+      margin-left: 14px;
+    }
+
+    .scroll-top:hover {
+      background: #1e1510;
+      transform: translateY(-3px);
+      box-shadow: 0 14px 28px -8px #1e151060;
+    }
+
+    .footer-note {
+      margin-top: 2.5rem;
+      font-size: 0.9rem;
+      color: #6b5b4f;
+      text-align: center;
+      border-top: 1px solid #ece2d9;
+      padding-top: 1.8rem;
+    }
+
+    .footer-note i {
+      color: #b48b7a;
+    }
+
+    /* responsive */
+    @media (max-width: 640px) {
+      body { padding: 0.8rem; }
+      .container { padding: 1.2rem; }
+      h1 { font-size: 1.8rem; }
+      .quick-access { gap: 0.3rem; border-radius: 40px; padding: 0.7rem; }
+      .quick-access a { font-size: 0.75rem; padding: 0.2rem 0.6rem; }
+      .section-title { font-size: 1.5rem; }
+      .team-vertical { padding: 1rem; }
+      .team-member-row { font-size: 0.95rem; }
+      .box-header { padding: 0.7rem 1rem; font-size: 0.9rem; }
+      .box-content { padding: 0 1rem; }
+      .box-item.active .box-content { padding: 0.8rem 1rem 1.2rem; }
+      .video-wrapper iframe { height: 200px; }
+      .gallery-thumb { width: 80px; height: 80px; }
+      .lightbox-slide { max-width: 95vw; max-height: 70vh; }
+      .lightbox-nav button { font-size: 1.6rem; padding: 0.2rem 0.8rem; }
+      .scroll-top { padding: 0.6rem 1.8rem; font-size: 1rem; }
+    }
+
+    @media (max-width: 400px) {
+      .quick-access a { font-size: 0.65rem; }
+      .gallery-thumb { width: 70px; height: 70px; }
+    }
+  </style>
+</head>
+<body>
+<div class="container" id="top">
+
+  <!-- quick access -->
+  <div class="quick-access" id="quickAccess">
+    <a href="#sectionTeam"><i class="fas fa-users"></i> گروه</a>
+    <a href="#sectionDetails"><i class="fas fa-list-ul"></i> جزئیات مندیبل</a>
+    <a href="#sectionVideo"><i class="fas fa-video"></i> ویدیو</a>
+    <a href="#sectionGallery"><i class="fas fa-images"></i> گالری</a>
+  </div>
+
+  <header>
+    <h1><i class="fas fa-tooth" style="color: #b48b7a; margin-left: 14px;"></i> آناتومی فک پایین</h1>
+    <div class="subhead">پروژه گروهی · دانشگاه شهید بهشتی </div>
+  </header>
+
+  <!-- ===== بخش ۱: اسامی افراد (عمودی) ===== -->
+  <section id="sectionTeam">
+    <div class="section-title"><i class="fas fa-user-graduate"></i> اعضای گروه &amp; اساتید</div>
+    <div class="team-vertical">
+      <div class="team-member-row advisor-row"><i class="fas fa-chalkboard-teacher"></i> دکتر سلطانی (استاد راهنما)</div>
+      <div class="team-member-row advisor-row"><i class="fas fa-chalkboard-teacher"></i> دکتر نوروزیان (استاد راهنما)</div>
+      <div class="team-member-row"><i class="fas fa-user"></i> بنیامین یوسفی</div>
+      <div class="team-member-row"><i class="fas fa-user"></i> حسین گودرزی</div>
+      <div class="team-member-row"><i class="fas fa-user"></i> مهدیه شریفی</div>
+      <div class="team-member-row"><i class="fas fa-user"></i> رامتین نجفی</div>
+      <div class="team-member-row"><i class="fas fa-user"></i> مائده منصور زارع</div>
+    </div>
+  </section>
+
+  <!-- ===== بخش ۲: باکس‌های کشویی ===== -->
+  <section id="sectionDetails">
+    <div class="section-title"><i class="fas fa-bone"></i> جزئیات آناتومیک مندیبل</div>
+    <div class="box-list" id="accordionBoxes">
+      <div class="box-item"><div class="box-header" onclick="toggleBox(this)"><span>1. incisive</span><i class="fas fa-chevron-down arrow"></i></div><div class="box-content"><p><strong>نقش:</strong> سوراخ برشی، عروق و اعصاب.</p></div></div>
+      <div class="box-item"><div class="box-header" onclick="toggleBox(this)"><span>2. Canine</span><i class="fas fa-chevron-down arrow"></i></div><div class="box-content"><p><strong>نقش:</strong> دندان نیش، عصب و شریان مربوطه.</p></div></div>
+      <div class="box-item"><div class="box-header" onclick="toggleBox(this)"><span>3. Pre molar</span><i class="fas fa-chevron-down arrow"></i></div><div class="box-content"><p><strong>نقش:</strong> دندان پیش‌مولر، عصب آلوئولار تحتانی.</p></div></div>
+      <div class="box-item"><div class="box-header" onclick="toggleBox(this)"><span>4. Molar</span><i class="fas fa-chevron-down arrow"></i></div><div class="box-content"><p><strong>نقش:</strong> دندان مولر، شریان و عصب دندانی.</p></div></div>
+      <div class="box-item"><div class="box-header" onclick="toggleBox(this)"><span>5. Mental protuberance</span><i class="fas fa-chevron-down arrow"></i></div><div class="box-content"><p><strong>نقش:</strong> برجستگی چانه، محل اتصال عضلات.</p></div></div>
+      <div class="box-item"><div class="box-header" onclick="toggleBox(this)"><span>6. Mental tubercle</span><i class="fas fa-chevron-down arrow"></i></div><div class="box-content"><p><strong>نقش:</strong> تکمه چانه، اتصال عضله پلاتیسما.</p></div></div>
+      <div class="box-item"><div class="box-header" onclick="toggleBox(this)"><span>7. Mental foramen</span><i class="fas fa-chevron-down arrow"></i></div><div class="box-content"><p><strong>نقش:</strong> سوراخ ذهنی، عبور عصب و شریان.</p></div></div>
+      <div class="box-item"><div class="box-header" onclick="toggleBox(this)"><span>8. Oblique line</span><i class="fas fa-chevron-down arrow"></i></div><div class="box-content"><p><strong>نقش:</strong> خط مورب، اتصال عضله باکینیاتور.</p></div></div>
+      <div class="box-item"><div class="box-header" onclick="toggleBox(this)"><span>9. Coronoid process</span><i class="fas fa-chevron-down arrow"></i></div><div class="box-content"><p><strong>نقش:</strong> زائده تاجی، اتصال عضله تمپورال.</p></div></div>
+      <div class="box-item"><div class="box-header" onclick="toggleBox(this)"><span>10. Condylar process</span><i class="fas fa-chevron-down arrow"></i></div><div class="box-content"><p><strong>نقش:</strong> زائده کندیلی، مفصل گیجگاهی‑فکی.</p></div></div>
+      <div class="box-item"><div class="box-header" onclick="toggleBox(this)"><span>11. (بدون نام)</span><i class="fas fa-chevron-down arrow"></i></div><div class="box-content"><p><strong>نقش:</strong> در حال تکمیل — جهت اطلاع با گروه تماس بگیرید.</p></div></div>
+      <div class="box-item"><div class="box-header" onclick="toggleBox(this)"><span>12. infra alveolar</span><i class="fas fa-chevron-down arrow"></i></div><div class="box-content"><p><strong>نقش:</strong> کانال آلوئولار تحتانی، عصب و شریان.</p></div></div>
+      <div class="box-item"><div class="box-header" onclick="toggleBox(this)"><span>13. Lingula</span><i class="fas fa-chevron-down arrow"></i></div><div class="box-content"><p><strong>نقش:</strong> زبانه فکی، رباط اسفنومندیبولار.</p></div></div>
+      <div class="box-item"><div class="box-header" onclick="toggleBox(this)"><span>14. Mylohyoid line</span><i class="fas fa-chevron-down arrow"></i></div><div class="box-content"><p><strong>نقش:</strong> خط میلوهیوئید، اتصال عضله میلوهیوئید.</p></div></div>
+      <div class="box-item"><div class="box-header" onclick="toggleBox(this)"><span>15. (بدون نام)</span><i class="fas fa-chevron-down arrow"></i></div><div class="box-content"><p><strong>نقش:</strong> در انتظار تکمیل اطلاعات.</p></div></div>
+      <div class="box-item"><div class="box-header" onclick="toggleBox(this)"><span>16. (بدون نام)</span><i class="fas fa-chevron-down arrow"></i></div><div class="box-content"><p><strong>نقش:</strong> به‌زودی تکمیل می‌شود.</p></div></div>
+      <div class="box-item"><div class="box-header" onclick="toggleBox(this)"><span>17. (بدون نام)</span><i class="fas fa-chevron-down arrow"></i></div><div class="box-content"><p><strong>نقش:</strong> —</p></div></div>
+      <div class="box-item"><div class="box-header" onclick="toggleBox(this)"><span>18. (بدون نام)</span><i class="fas fa-chevron-down arrow"></i></div><div class="box-content"><p><strong>نقش:</strong> —</p></div></div>
+      <div class="box-item"><div class="box-header" onclick="toggleBox(this)"><span>19. (بدون نام)</span><i class="fas fa-chevron-down arrow"></i></div><div class="box-content"><p><strong>نقش:</strong> —</p></div></div>
+      <div class="box-item"><div class="box-header" onclick="toggleBox(this)"><span>20. (بدون نام)</span><i class="fas fa-chevron-down arrow"></i></div><div class="box-content"><p><strong>نقش:</strong> —</p></div></div>
+      <div class="box-item"><div class="box-header" onclick="toggleBox(this)"><span>21. برجستگی داخلی</span><i class="fas fa-chevron-down arrow"></i></div><div class="box-content"><p><strong>نقش:</strong> برجستگی داخلی فک، محل اتصال عضلات.</p></div></div>
+      <div class="box-item"><div class="box-header" onclick="toggleBox(this)"><span>22. برجستگی خارجی</span><i class="fas fa-chevron-down arrow"></i></div><div class="box-content"><p><strong>نقش:</strong> برجستگی خارجی، استخوانی برای عضلات.</p></div></div>
+      <div class="box-item"><div class="box-header" onclick="toggleBox(this)"><span>23. (بدون نام)</span><i class="fas fa-chevron-down arrow"></i></div><div class="box-content"><p><strong>نقش:</strong> در حال بررسی.</p></div></div>
+    </div>
+    <p style="font-size:0.9rem; color:#6b5b4f; margin-top: 0.2rem;"><i class="fas fa-info-circle"></i> برای مشاهده جزئیات هر بخش کلیک کنید.</p>
+  </section>
+
+  <!-- ===== بخش ۳: ویدیو ===== -->
+<!-- ===== بخش ۳: ویدیو ===== -->
+  <section id="sectionVideo">
+    <div class="section-title"><i class="fas fa-play-circle"></i> ویدیوی آموزشی</div>
+    <div class="video-wrapper">
+      <!-- لینک فرضی یوتیوب: کد دمو dQw4w9WgXcQ قرار داده شده که بعداً می‌توانید کد ویدیوی اصلی را جایگزین کنید -->
+      <iframe 
+        src="https://www.youtube.com/embed/_lHosB-c_fQ" 
+        title="ویدیوی آموزشی آناتومی فک پایین" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+        allowfullscreen>
+      </iframe>
+      
+      <div style="margin-top: 0.8rem; font-size: 0.95rem; color: #5a4a3d; display: flex; flex-direction: column; gap: 6px; align-items: center;">
+        <p><i class="fas fa-info-circle" style="color: #b48b7a;"></i> ویدیوی آموزشی توسط استاد راهنما</p>
+        <p style="color: #c0392b; font-size: 0.88rem; font-weight: 600;">
+          <i class="fas fa-shield-alt"></i> در صورت عدم بارگذاری یا نمایش ویدیو، لطفاً ابتدا VPN خود را روشن کنید.
+        </p>
+        <p style="font-size: 0.88rem;">
+          اگر پیش‌نمایش ویدیو باز نشد، <a href="https://youtu.be/_lHosB-c_fQ?si=woASVeJeXKiCSWqu" target="_blank" style="color: #b48b7a; font-weight: bold; text-decoration: underline;">اینجا کلیک کنید</a> تا ویدیو مستقیماً در یوتیوب باز شود.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== بخش ۴: گالری فلکس + اسلاید ===== -->
+  <section id="sectionGallery">
+    <div class="section-title"><i class="fas fa-camera-retro"></i> گالری ساخت مندیبل</div>
+    <div class="gallery-section">
+      <div class="gallery-flex" id="galleryFlex">
+        <img src="src/1.jpg" class="gallery-thumb" onclick="openLightbox(0)">
+        <img src="src/2.jpg" class="gallery-thumb" onclick="openLightbox(1)">
+        <img src="src/3.jpg" class="gallery-thumb" onclick="openLightbox(2)">
+        <img src="src/4.jpg" class="gallery-thumb" onclick="openLightbox(3)">
+      </div>
+      <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; margin-top: 0.8rem;">
+        <span style="font-size:0.9rem; color:#5a4a3d;"><i class="fas fa-arrow-left"></i> کلیک روی هر عکس برای نمایش اسلاید</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- دکمه بازگشت -->
+  <div style="display: flex; justify-content: center;">
+    <button class="scroll-top" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i> بازگشت به دسترسی سریع</button>
+  </div>
+
+  <div class="footer-note">
+    <i class="fas fa-qrcode"></i> این صفحه با QR Code قابل دسترسی است · پروژه آناتومی دانشگاه شهید بهشتی
+  </div>
+
+</div> <!-- end container -->
+
+<!-- ===== Lightbox (اسلاید) ===== -->
+<div class="lightbox-overlay" id="lightboxOverlay" onclick="closeLightbox(event)">
+  <button class="close-lightbox" onclick="closeLightbox()"><i class="fas fa-times"></i></button>
+  <img class="lightbox-slide" id="lightboxImg" src="" alt="گالری">
+  <div class="lightbox-nav">
+    <button onclick="prevImage(event)"><i class="fas fa-chevron-right"></i></button>
+    <button onclick="nextImage(event)"><i class="fas fa-chevron-left"></i></button>
+  </div>
+  <div class="lightbox-counter" id="lightboxCounter">1 / 4</div>
+</div>
+
+<script>
+  // ---- Accordion ----
+  function toggleBox(headerElement) {
+    const boxItem = headerElement.closest('.box-item');
+    if (!boxItem) return;
+    const allBoxes = document.querySelectorAll('.box-item');
+    allBoxes.forEach(b => {
+      if (b !== boxItem && b.classList.contains('active')) {
+        b.classList.remove('active');
+      }
+    });
+    boxItem.classList.toggle('active');
+  }
+
+  // ---- Scroll to top ----
+  function scrollToTop() {
+    const quickAccess = document.getElementById('quickAccess');
+    if (quickAccess) {
+      quickAccess.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
+
+  // ---- Gallery Lightbox ----
+  let galleryImages = [];
+  let currentIndex = 0;
+
+  function updateGalleryArray() {
+    const thumbs = document.querySelectorAll('.gallery-thumb');
+    galleryImages = [];
+    thumbs.forEach(img => {
+      galleryImages.push(img.src);
+    });
+  }
+
+  function openLightbox(index) {
+    updateGalleryArray();
+    if (galleryImages.length === 0) return;
+    currentIndex = index;
+    const overlay = document.getElementById('lightboxOverlay');
+    const img = document.getElementById('lightboxImg');
+    img.src = galleryImages[currentIndex];
+    document.getElementById('lightboxCounter').textContent = (currentIndex + 1) + ' / ' + galleryImages.length;
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox(e) {
+    if (e && e.target !== e.currentTarget && e.target.tagName !== 'BUTTON' && e.target.tagName !== 'I') {
+      return;
+    }
+    const overlay = document.getElementById('lightboxOverlay');
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function nextImage(e) {
+    e.stopPropagation();
+    if (galleryImages.length === 0) return;
+    currentIndex = (currentIndex + 1) % galleryImages.length;
+    document.getElementById('lightboxImg').src = galleryImages[currentIndex];
+    document.getElementById('lightboxCounter').textContent = (currentIndex + 1) + ' / ' + galleryImages.length;
+  }
+
+  function prevImage(e) {
+    e.stopPropagation();
+    if (galleryImages.length === 0) return;
+    currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+    document.getElementById('lightboxImg').src = galleryImages[currentIndex];
+    document.getElementById('lightboxCounter').textContent = (currentIndex + 1) + ' / ' + galleryImages.length;
+  }
+
+    // ---- Fix YouTube iframe error ----
+  function fixYouTubeVideo() {
+    const iframe = document.querySelector('.video-wrapper iframe');
+    if (!iframe) return;
+    
+    // اگر iframe خطا داد، یک لینک جایگزین نمایش بده
+    iframe.onerror = function() {
+      const wrapper = document.querySelector('.video-wrapper');
+      if (wrapper) {
+        const fallback = document.createElement('div');
+        fallback.style.cssText = 'padding: 2rem; background: #f4ede7; border-radius: 24px; margin-top: 1rem;';
+        fallback.innerHTML = `
+          <i class="fas fa-exclamation-triangle" style="color: #b48b7a; font-size: 2rem; display: block; margin-bottom: 0.5rem;"></i>
+          <p style="color: #5a4a3d;">ویدیو قابل پخش نیست. از <a href="https://youtu.be/_lHosB-c_fQ" target="_blank" style="color: #b48b7a; text-decoration: underline;">لینک مستقیم</a> استفاده کنید.</p>
+        `;
+        iframe.style.display = 'none';
+        wrapper.appendChild(fallback);
+      }
+    };
+  }
+
+  // ---- Init ----
+  document.addEventListener('DOMContentLoaded', function() {
+    updateGalleryArray();
+    // close active boxes if any
+    document.querySelectorAll('.box-item.active').forEach(b => b.classList.remove('active'));
+  });
+
+  // Close lightbox with ESC
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      closeLightbox();
+    }
+    if (e.key === 'ArrowLeft') {
+      const overlay = document.getElementById('lightboxOverlay');
+      if (overlay.classList.contains('active')) {
+        e.preventDefault();
+        nextImage(e);
+      }
+    }
+    if (e.key === 'ArrowRight') {
+      const overlay = document.getElementById('lightboxOverlay');
+      if (overlay.classList.contains('active')) {
+        e.preventDefault();
+        prevImage(e);
+      }
+    }
+  });
+</script>
+
+<!-- توضیحات میزبانی رایگان: 
+     برای آپلود و دریافت QR Code از سرویس‌های زیر استفاده کنید:
+     - GitHub Pages (با ریپو عمومی) → https://pages.github.com
+     - Netlify → https://www.netlify.com (درگ اند دراپ)
+     - Vercel → https://vercel.com
+     پس از آپلود، از سرویس‌های QR Code مانند https://www.qr-code-generator.com یا https://goqr.me برای تبدیل لینک به QR استفاده کنید.
+-->
+</body>
+</html>
